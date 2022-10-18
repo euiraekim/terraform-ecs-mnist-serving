@@ -1,4 +1,6 @@
 Flask==2.2.2
 gunicorn==20.1.0
+
+--find-links https://download.pytorch.org/whl/torch_stable.html
 torch==1.12.0+cpu
 torchvision==0.13.0+cpu
