@@ -1,5 +1,15 @@
-[{
-  "cpu": 1024,
-  "memory": 512,
-
-}]
+[
+  {
+    "name": "mnist",
+    "image": "mnist",
+    "cpu": 1,
+    "memory": 512,
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 5000,
+        "hostPort": 5000
+      }
+    ]
+  }
+]
