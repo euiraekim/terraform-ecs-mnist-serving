@@ -1,6 +1,6 @@
-module "init" {
-  source = "./init"
-}
+#module "init" {
+#  source = "./init"
+#}
 
 module "vpc" {
   source = "./vpc"
