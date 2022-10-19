@@ -3,7 +3,7 @@
     "name": "mnist",
     "image": "mnist",
     "cpu": 1,
-    "memory": 512,
+    "memory": 2048,
     "essential": true,
     "portMappings": [
       {
