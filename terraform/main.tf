@@ -35,5 +35,7 @@ module "ecr" {
 
 module "ecs" {
   source = "./ecs"
+  
+  target_group_arn = module.alb.target_group_arn
 }
 
