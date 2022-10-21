@@ -23,7 +23,7 @@ resource "aws_subnet" "public" {
 resource "aws_subnet" "private" {
   count = length(var.availability_zones)
   vpc_id = aws_vpc.default.id
-
+  
   cidr_block = "${var.private_subnet_cidrs[count.index]}"
   availability_zone = element(var.availability_zones, count.index)
 
@@ -41,30 +41,30 @@ resource "aws_internet_gateway" "default" {
   }
 }
 
-#resource "aws_eip" "nat" {
-#  count = length(var.availability_zones)
-#  vpc = true
-#
-#  lifecycle {
-#    create_before_destroy = true
-#  }
-#}
+resource "aws_eip" "nat" {
+  count = length(var.availability_zones)
+  vpc = true
 
-#resource "aws_nat_gateway" "nat" {
-#  count = length(var.availability_zones)
-#  
-#  allocation_id = element(aws_eip.nat.*.id, count.index)
-#
-#  subnet_id = element(aws_subnet.public.*.id, count.index)
-#
-#  lifecycle {
-#    create_before_destroy = true
-#  }
-#
-#  tags = {
-#    Name = "my-nat-gateway-${count.index}"
-#  }
-#}
+  lifecycle {
+    create_before_destroy = true
+ }
+}
+
+resource "aws_nat_gateway" "nat" {
+  count = length(var.availability_zones)
+  
+  allocation_id = element(aws_eip.nat.*.id, count.index)
+
+  subnet_id = element(aws_subnet.public.*.id, count.index)
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  tags = {
+    Name = "my-nat-gateway-${count.index}"
+  }
+}
 
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.default.id
@@ -101,9 +101,9 @@ resource "aws_route_table_association" "private" {
   route_table_id = element(aws_route_table.private.*.id, count.index)
 }
 
-#resource "aws_route" "private_nat" {
-#  count = length(var.availability_zones)
-#  route_table_id = element(aws_route_table.private.*.id, count.index)
-#  destination_cidr_block = "0.0.0.0/0"
-#  nat_gateway_id = element(aws_nat_gateway.nat.*.id, count.index)
-#}
+resource "aws_route" "private_nat" {
+  count = length(var.availability_zones)
+  route_table_id = element(aws_route_table.private.*.id, count.index)
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id = element(aws_nat_gateway.nat.*.id, count.index)
+}

@@ -2,12 +2,12 @@ resource "aws_alb" "default" {
   name = "my-alb"
   security_groups = [var.alb_security_group_id]
 
-  subnets = var.private_subnet_ids
+  subnets = var.public_subnet_ids
 }
 
 resource "aws_alb_target_group" "default" {
   name = "my-alb-target-group"
-  port = 80
+  port = 5000
   protocol = "HTTP"
 
   vpc_id = var.vpc_id

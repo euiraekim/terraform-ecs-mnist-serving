@@ -1,6 +1,7 @@
 resource "aws_launch_configuration" "default" {
   iam_instance_profile = var.ecs_iam_instance_profile_name
-  image_id = "ami-0dfe299a8a7fe500e"
+  # image_id = "ami-0dfe299a8a7fe500e"
+  image_id = data.aws_ami.default.id
   instance_type = "t3.medium"
   key_name = "keykey"
 

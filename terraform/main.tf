@@ -1,7 +1,3 @@
-#module "init" {
-#  source = "./init"
-#}
-
 module "vpc" {
   source = "./vpc"
 }
@@ -16,7 +12,7 @@ module "alb" {
   source = "./alb"
 
   vpc_id = module.vpc.vpc_id
-  private_subnet_ids = module.vpc.private_subnet_ids
+  public_subnet_ids = module.vpc.public_subnet_ids
   alb_security_group_id = module.sg.alb_security_group_id
 }
 

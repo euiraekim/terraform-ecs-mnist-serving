@@ -1,7 +1,6 @@
 [
   {
     "name": "mnist",
-    "image": "mnist",
     "cpu": 256,
     "memory": 512,
     "essential": true,
@@ -9,7 +8,7 @@
     "portMappings": [
       {
         "containerPort": 5000,
-        "hostPort": 80
+        "hostPort": 5000
       }
     ]
   }
