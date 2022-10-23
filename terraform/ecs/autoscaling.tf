@@ -34,6 +34,6 @@ resource "aws_appautoscaling_policy" "dev_to_cpu" {
       predefined_metric_type = "ECSServiceAverageCPUUtilization"
     }
 
-    target_value = 60
+    target_value = 20
   }
 }
