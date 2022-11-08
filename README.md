@@ -12,6 +12,15 @@
 
 <br/><br/>
 
+# 기술 스택
+* Cloud service : AWS
+* IaC : Terraform
+* Container : ECS, ECR, Docker
+* Server : Flask
+* Deep Learning : Pytorch
+
+<br/><br/>
+
 # 사전 조건
 terraform과 aws cli 등 terraform 코드로 aws를 제어할 환경이 세팅되어있어야한다.
 
