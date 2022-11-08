@@ -49,8 +49,8 @@ resource "aws_security_group" "web" {
   vpc_id = var.vpc_id
 
   ingress {
-    from_port = 5000
-    to_port = 5000
+    from_port = 0
+    to_port = 65535
     protocol = "tcp"
     security_groups = [aws_security_group.alb.id]
   }
